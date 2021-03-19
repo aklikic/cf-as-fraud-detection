@@ -1,0 +1,31 @@
+{
+    "namespace": "fd.datamodel",
+    "type": "record",
+    "name": "CustomerTransactionFraudReport",
+    "fields":[
+        {
+          "name": "transId",
+          "type": "string"
+        },
+        {
+          "name": "customerId",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "long"
+        },
+        {
+          "name": "amountCents",
+          "type": "int"
+        },
+        {
+            "name": "riskScore",
+            "type": "int"
+        },
+        {
+          "name": "isPotentialFraud",
+          "type": "boolean"
+        }
+    ]
+}

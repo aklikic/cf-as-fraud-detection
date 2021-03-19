@@ -1,0 +1,23 @@
+{
+    "namespace": "fd.datamodel",
+    "type": "record",
+    "name": "CustomerTransaction",
+    "fields":[
+         {
+             "name": "transId",
+             "type": "string"
+         },
+         {
+             "name": "customerId",
+             "type": "string"
+         },
+         {
+            "name": "timestamp",
+            "type": "long"
+         },
+        {
+          "name": "amountCents",
+          "type": "int"
+        }
+    ]
+}

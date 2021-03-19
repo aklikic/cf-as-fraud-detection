@@ -1,0 +1,12 @@
+/target/
+/cf-as-fraud-detection.iml
+/.idea/
+.DS_Store
+/project/target/
+/project/project/
+/trans-egress/target
+/trans-ingress/target
+/trans-processor/target
+/datamodel/target
+/as-client/target
+/app/target
