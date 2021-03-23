@@ -97,5 +97,6 @@ lazy val commonSettings = Seq(
     "junit"                  % "junit"                      % "4.12"     % "test"),
 
   schemaCodeGenerator := SchemaCodeGenerator.Java,
-  javacOptions ++= Seq("-Xlint:deprecation")
+  javacOptions ++= Seq("-Xlint:deprecation"),
+  version := "1.0.0-SNAPSHOT"
 )
