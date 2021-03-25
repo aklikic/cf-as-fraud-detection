@@ -21,16 +21,8 @@ public class TransGenerator extends AkkaStreamlet {
 
     private Duration frequency = Duration.ofSeconds(10);
     public AvroOutlet<CustomerTransaction> out = AvroOutlet.create("trans-out", CustomerTransaction::getTransId,CustomerTransaction.class);
-    private final List<String> customerIds;
 
     private Random random = new Random();
-
-    public TransGenerator(){
-        customerIds =
-        IntStream.range(0,10)
-                .mapToObj(i->"1105"+i)
-                .collect(Collectors.toList());
-    }
 
     @Override
     public StreamletShape shape() {
@@ -43,7 +35,7 @@ public class TransGenerator extends AkkaStreamlet {
             @Override
             public RunnableGraph<?> createRunnableGraph() {
                 return Source.tick(frequency,frequency,"")
-                             .map(t->customerIds.get(random.nextInt(customerIds.size())))
+                             .map(t->Helper.customerIds.get(random.nextInt(Helper.customerIds.size())))
                              .map(this::createTrans)
                              .to(getPlainSink(out));
             }

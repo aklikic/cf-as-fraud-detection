@@ -1,0 +1,19 @@
+{
+    "namespace": "fd.datamodel",
+    "type": "record",
+    "name": "Customer",
+    "fields":[
+         {
+             "name": "customerId",
+             "type": "string"
+         },
+         {
+             "name": "ruleId",
+             "type": "string"
+         },
+        {
+          "name": "maxAmountCents",
+          "type": "int"
+        }
+    ]
+}
