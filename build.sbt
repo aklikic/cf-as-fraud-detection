@@ -29,7 +29,8 @@ lazy val app = appModule("app")
   )
 
 lazy val transIngress = appModule("trans-ingress")
-  .enablePlugins(CloudflowAkkaPlugin)
+  .enablePlugins(CloudflowAkkaPlugin,Cinnamon)
+  .settings(cinnamonSettings)
   .settings(
     Test / parallelExecution := false,
     Test / fork := true
@@ -37,7 +38,8 @@ lazy val transIngress = appModule("trans-ingress")
   .dependsOn(datamodel)
 
 lazy val transProcessor = appModule("trans-processor")
-  .enablePlugins(CloudflowAkkaPlugin)
+  .enablePlugins(CloudflowAkkaPlugin,Cinnamon)
+  .settings(cinnamonSettings)
   .settings(
     Test / parallelExecution := false,
     Test / fork := true
@@ -45,7 +47,8 @@ lazy val transProcessor = appModule("trans-processor")
   .dependsOn(datamodel,asClient)
 
 lazy val transEgress = appModule("trans-egress")
-  .enablePlugins(CloudflowAkkaPlugin)
+  .enablePlugins(CloudflowAkkaPlugin,Cinnamon)
+  .settings(cinnamonSettings)
   .settings(
     Test / parallelExecution := false,
     Test / fork := true
@@ -99,4 +102,24 @@ lazy val commonSettings = Seq(
   schemaCodeGenerator := SchemaCodeGenerator.Java,
   javacOptions ++= Seq("-Xlint:deprecation"),
   version := "1.0.0-SNAPSHOT"
+
 )
+
+lazy val cinnamonSettings = Seq(
+  cinnamonSuppressRepoWarnings := true,
+  cinnamon in test := true,
+  cinnamon in run := true,
+  cinnamonLogLevel := "INFO",
+
+  libraryDependencies ++= Seq(
+    Cinnamon.library.cinnamonAgent,
+    Cinnamon.library.cinnamonAkka,
+    Cinnamon.library.cinnamonAkkaStream,
+    Cinnamon.library.cinnamonAkkaHttp,
+    Cinnamon.library.cinnamonPrometheus,
+    Cinnamon.library.cinnamonPrometheusHttpServer,
+    Cinnamon.library.cinnamonOpenTracing,
+    Cinnamon.library.cinnamonOpenTracingJaeger
+  )
+)
+

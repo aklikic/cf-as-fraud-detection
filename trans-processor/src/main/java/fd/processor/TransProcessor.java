@@ -45,7 +45,7 @@ public class TransProcessor extends AkkaStreamlet {
 
             @Override
             public RunnableGraph<?> createRunnableGraph() {
-                return getSourceWithCommittableContext(in).to(Splitter.sink(transProcessFLow,outOk,outRisk,getContext()));
+                return getSourceWithCommittableContext(in).to(Splitter.sink(transProcessFLow,outOk,outRisk,getContext())).named("trans-processor");
             }
         };
     }
